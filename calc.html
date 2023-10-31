@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel GST Calculator</title>
+            <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+
+        <!-- Normalize CSS --> 
+        <link rel="stylesheet" href="css/normalize.css">
+
+        <!-- Main CSS -->         
+        <link rel="stylesheet" href="css/main.css">
+
+        <!-- Bootstrap CSS --> 
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <!-- Animate CSS --> 
+        <link rel="stylesheet" href="css/animate.min.css">
+
+        <!-- Font-awesome CSS-->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        
+        <!-- Owl Caousel CSS -->
+        <link rel="stylesheet" href="vendor/OwlCarousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="vendor/OwlCarousel/owl.theme.default.min.css">
+        
+        <!-- Main Menu CSS -->      
+        <link rel="stylesheet" href="css/meanmenu.min.css">
+
+        <!-- nivo slider CSS -->
+        <link rel="stylesheet" href="vendor/slider/css/nivo-slider.css" type="text/css" />
+        <link rel="stylesheet" href="vendor/slider/css/preview.css" type="text/css" media="screen" />
+
+        <!-- Datetime Picker Style CSS -->
+        <link rel="stylesheet" href="css/jquery.datetimepicker.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color:gray;
+            background-size: fit;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .calculator-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 50px auto;
+            max-width: 400px;
+        }
+
+        label, select, input, button {
+            margin-bottom: 10px;
+            display: block;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-box">
+        <h1>Hotel GST Calculator</h1>
+
+        <label for="billAmount">Bill Amount:</label>
+        <input type="number" id="billAmount" step="0.01"><br>
+
+        <label for="gstPercentage">GST Percentage:</label>
+        <select id="gstPercentage">
+            <option value="5">5%</option>
+            <option value="12">12%</option>
+            <option value="18">18%</option>
+            <option value="28">28%</option>
+        </select><br>
+
+        <button onclick="calculateGST()">Calculate GST</button>
+
+        <div id="result" style="display:none;">
+            <h2>Results</h2>
+            <p>GST Amount: Rs:<span id="gstAmount"></span></p>
+            <p>Total Bill (including GST): Rs:<span id="totalBill"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateGST() {
+            const billAmount = parseFloat(document.getElementById("billAmount").value);
+            const gstPercentage = parseInt(document.getElementById("gstPercentage").value);
+
+            const gstAmount = (billAmount * gstPercentage) / 100;
+            const totalBill = billAmount + gstAmount;
+
+            document.getElementById("gstAmount").textContent = gstAmount.toFixed(2);
+            document.getElementById("totalBill").textContent = totalBill.toFixed(2);
+
+            document.getElementById("result").style.display = "block";
+        }
+    </script>
+</body>
+</html>
